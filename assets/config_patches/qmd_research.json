@@ -1,0 +1,61 @@
+{
+  "memory": {
+    "backend": "qmd",
+    "qmd": {
+      "paths": [
+        { "name": "research", "path": "~/research", "pattern": "**/*.md" },
+        { "name": "papers", "path": "~/papers", "pattern": "**/*.md" }
+      ],
+      "sessions": {
+        "enabled": true
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "memory-core": {
+        "config": {
+          "dreaming": {
+            "enabled": true,
+            "frequency": "0 3 * * *",
+            "timezone": "America/New_York"
+          }
+        }
+      },
+      "memory-wiki": {
+        "enabled": true,
+        "config": {
+          "vaultMode": "bridge",
+          "vault": {
+            "path": "~/workspaces/main/wiki",
+            "renderMode": "obsidian"
+          },
+          "bridge": {
+            "enabled": true,
+            "readMemoryArtifacts": true,
+            "indexDreamReports": true,
+            "indexDailyNotes": true,
+            "indexMemoryRoot": true,
+            "followMemoryEvents": true
+          },
+          "ingest": {
+            "autoCompile": true,
+            "allowUrlIngest": true
+          },
+          "search": {
+            "backend": "shared",
+            "corpus": "all"
+          },
+          "render": {
+            "preserveHumanBlocks": true,
+            "createBacklinks": true,
+            "createDashboards": true
+          },
+          "context": {
+            "includeCompiledDigestPrompt": true
+          }
+        }
+      }
+    }
+  }
+}
