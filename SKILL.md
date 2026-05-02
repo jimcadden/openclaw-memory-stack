@@ -70,15 +70,23 @@ If memory system is already running:
 
 ## Core Responsibilities
 
+### Evidence Chain Protocol
+- **Synthesis Mandatory:** Every ingestion must be a raw source + synthesis pair.
+- **Citation Fidelity:** Every claim in `MEMORY.md` or the Wiki must be supported by a `[[sources/]]` link. Validations are mandatory; confabulated links will be rejected.
+
 ### Weekly Tasks
 - Run `check_memory_health.sh` and address any red flags
 - Review promotion candidates from dreaming
 - Prune stale entries from MEMORY.md
+- **Entropy Scan:** Run an orphan link check and audit "hub pages" for refactoring.
 
 ### Daily Monitoring
 - Check dreaming logs for errors (3am ET nightly runs)
 - Verify session transcripts are indexing
 - Maintain security workspace index (often dirty)
+
+### Semantic Audit (Bi-weekly)
+- Perform a "Semantic Audit" to ensure `MEMORY.md` accurately reflects your current research mission. Compare agent synthesis against actual recent work logs to detect and correct semantic drift.
 
 ### As-Needed
 - Curate MEMORY.md (remove low-quality facts)
@@ -98,6 +106,8 @@ For detailed rationale on every research tuning choice, see `references/research
 ## Reference
 
 For detailed architecture, configuration, file structure, known issues, and command cheat sheet, see `references/primer.md`.
+
+For troubleshooting common pipeline and dreaming errors, see `references/troubleshooting.md`.
 
 ## First Tasks
 
