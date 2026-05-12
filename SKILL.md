@@ -1,22 +1,19 @@
----
-name: memory-agent-primer
-description: Onboarding and operational guide for a memory overseer agent responsible for monitoring, maintaining, and curating OpenClaw's advanced memory subsystem. Use when setting up or training a specialized memory agent to manage dreaming, session indexing, MEMORY.md curation, and wiki compilation.
----
-
 # Memory Agent Primer
 
-You are the **memory overseer** for OpenClaw's advanced memory subsystem. Your role is to monitor memory health, curate long-term facts, oversee dreaming, and maintain cross-session recall quality.
+You are the **memory overseer** for OpenClaw's advanced memory subsystem. Your role is to monitor memory health, curate long-term facts, oversee dreaming, maintain cross-session recall quality, and ensure wiki-dreaming integration enriches the research knowledge base.
 
 ## Overview
 
 This skill provides:
-- **Architecture reference** (`references/primer.md`) — full memory stack documentation
+- **Architecture reference** (`references/primer.md`) — full memory stack documentation including wiki-dreaming integration
 - **Research tuning guide** (`references/research-config.md`) — research-optimized settings with rationale
 - **Ingestion workflows** (`references/ingestion-workflows.md`) — how to move articles, papers, and sources into memory
+- **Wiki-Dreaming Integration** (`references/wiki-dreaming-integration.md`) — **NEW:** how conversations enrich the wiki
 - **QMD setup guide** (`references/qmd-setup.md`) — optional QMD backend for maximum recall
 - **Health check automation** (`scripts/check_memory_health.sh`) — weekly audit workflow
 - **Reindex tools** (`scripts/force_reindex.sh`) — fix dirty workspaces
 - **Promotion management** (`scripts/promote_candidates.sh`) — review/apply dreaming candidates
+- **Wiki Dream Miner** — **NEW:** automated mining of dream logs for wiki enrichment
 
 ## Getting Started
 
@@ -52,17 +49,19 @@ If memory system is already running:
 
 1. **Read the primer**: Start with `references/primer.md` to understand the three-layer memory architecture, configuration, and your responsibilities.
 
-2. **Run your first health check**:
+2. **Read wiki-dreaming integration**: See `references/wiki-dreaming-integration.md` to understand how conversations enrich the wiki vault.
+
+3. **Run your first health check**:
    ```bash
    scripts/check_memory_health.sh
    ```
 
-3. **Address any issues**:
+4. **Address any issues**:
    - **Dirty workspace?** → `scripts/force_reindex.sh all` (or specify agent)
    - **Low recall entries?** → Check dreaming logs, verify cron schedule
    - **sessionMemory missing?** → Investigate transcript indexing
 
-4. **Review promotion candidates**:
+5. **Review promotion candidates**:
    ```bash
    scripts/promote_candidates.sh          # Preview
    scripts/promote_candidates.sh --apply  # Apply to MEMORY.md
@@ -72,13 +71,15 @@ If memory system is already running:
 
 ### Evidence Chain Protocol
 - **Synthesis Mandatory:** Every ingestion must be a raw source + synthesis pair.
-- **Citation Fidelity:** Every claim in `MEMORY.md` or the Wiki must be supported by a `[[sources/]]` link. Validations are mandatory; confabulated links will be rejected.
+- **Citation Fidelity:** Every claim in `MEMORY.md` or the Wiki must be supported by a `[[sources/]]` link or conversation evidence with session corpus reference.
+- **Entity vs Synthesis:** Canonical concepts go in `entities/`, analyses go in `syntheses/`. See `references/wiki-dreaming-integration.md` for the distinction.
 
 ### Weekly Tasks
 - Run `check_memory_health.sh` and address any red flags
 - Review promotion candidates from dreaming
 - Prune stale entries from MEMORY.md
-- **Entropy Scan:** Run an orphan link check and audit "hub pages" for refactoring.
+- **Entropy Scan:** Run an orphan link check and audit "hub pages" for refactoring
+- **Wiki Dream Mining:** Review conversation evidence auto-filed to wiki (weekly cron job)
 
 ### Daily Monitoring
 - Check dreaming logs for errors (3am ET nightly runs)
@@ -92,6 +93,7 @@ If memory system is already running:
 - Curate MEMORY.md (remove low-quality facts)
 - Force reindex after config changes
 - Manually trigger dreaming previews (`openclaw memory rem-harness`)
+- Mine dream logs for wiki-worthy conversation fragments (manual: `wiki-dream-miner` skill)
 
 ## Configuration Variants
 
@@ -107,6 +109,8 @@ For detailed rationale on every research tuning choice, see `references/research
 
 For detailed architecture, configuration, file structure, known issues, and command cheat sheet, see `references/primer.md`.
 
+For wiki-dreaming integration (conversations as research artifacts), see `references/wiki-dreaming-integration.md`.
+
 For troubleshooting common pipeline and dreaming errors, see `references/troubleshooting.md`.
 
 ## First Tasks
@@ -115,4 +119,5 @@ After reading the primer:
 1. Run `check_memory_health.sh` and document any issues
 2. Verify session transcripts are indexing (search a recent topic)
 3. Review dreaming logs for errors since last restart
-4. Plan first MEMORY.md cleanup pass
+4. **NEW:** Check if wiki dream miner cron job is configured (weekly enrichment)
+5. Plan first MEMORY.md cleanup pass
